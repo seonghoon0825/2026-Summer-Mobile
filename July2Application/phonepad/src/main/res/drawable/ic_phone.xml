@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <!-- simple handset-ish shape (stylized) -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M6.62,10.79C8.06,13.99 10.99,16.92 14.19,18.36l1.41-1.41c0.27-0.27 0.68-0.36 1.03-0.24c0.99,0.33 2.08,0.51 3.21,0.51c0.55,0 1,0.45 1,1v3c0,0.55-0.45,1-1,1C9.16,23.5 0.5,14.84 0.5,3.5C0.5,2.95 0.95,2.5 1.5,2.5h3c0.55,0 1,0.45 1,1c0,1.13 0.18,2.22 0.51,3.21c0.12,0.35 0.03,0.76-0.24,1.03L6.62,10.79z" />
+</vector>
+

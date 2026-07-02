@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".MainActivity">
+
+    <EditText
+        android:id="@+id/phoneNumberDisplay"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:gravity="center_vertical|right"
+        android:textSize="32sp"
+        android:background="#F5F5F5"
+        android:editable="false"
+        android:padding="16dp"
+        android:inputType="none" />
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="*"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp">
+
+        <TableRow>
+            <Button
+                android:id="@+id/btn_1"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_weight="1"
+                android:layout_margin="4dp"
+                android:text="1"
+                android:textSize="28sp"
+                android:background="@drawable/round_button" />
+
+            <Button
+                android:id="@+id/btn_2"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_weight="1"
+                android:layout_margin="4dp"
+                android:text="2"
+                android:textSize="28sp"
+                android:background="@drawable/round_button" />
+
+            <Button
+                android:id="@+id/btn_3"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_weight="1"
+                android:layout_margin="4dp"
+                android:text="3"
+                android:textSize="28sp"
+                android:background="@drawable/round_button" />
+        </TableRow>
+
+        <TableRow>
+            <Button
+                android:id="@+id/btn_4"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_weight="1"
+                android:layout_margin="4dp"
+                android:text="4"
+                android:textSize="28sp"
+                android:background="@drawable/round_button" />
+
+            <Button
+                android:id="@+id/btn_5"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_weight="1"
+                android:layout_margin="4dp"
+                android:text="5"
+                android:textSize="28sp"
+                android:background="@drawable/round_button" />
+
+            <Button
+                android:id="@+id/btn_6"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_weight="1"
+                android:layout_margin="4dp"
+                android:text="6"
+                android:textSize="28sp"
+                android:background="@drawable/round_button" />
+        </TableRow>
+
+        <TableRow>
+            <Button
+                android:id="@+id/btn_7"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_weight="1"
+                android:layout_margin="4dp"
+                android:text="7"
+                android:textSize="28sp"
+                android:background="@drawable/round_button" />
+
+            <Button
+                android:id="@+id/btn_8"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_weight="1"
+                android:layout_margin="4dp"
+                android:text="8"
+                android:textSize="28sp"
+                android:background="@drawable/round_button" />
+
+            <Button
+                android:id="@+id/btn_9"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_weight="1"
+                android:layout_margin="4dp"
+                android:text="9"
+                android:textSize="28sp"
+                android:background="@drawable/round_button" />
+        </TableRow>
+
+        <TableRow>
+            <Button
+                android:id="@+id/btn_star"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_weight="1"
+                android:layout_margin="4dp"
+                android:text="*"
+                android:textSize="28sp"
+                android:background="@drawable/round_button" />
+
+            <Button
+                android:id="@+id/btn_0"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_weight="1"
+                android:layout_margin="4dp"
+                android:text="0"
+                android:textSize="28sp"
+                android:background="@drawable/round_button" />
+
+            <Button
+                android:id="@+id/btn_hash"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_weight="1"
+                android:layout_margin="4dp"
+                android:text="#"
+                android:textSize="28sp"
+                android:background="@drawable/round_button" />
+        </TableRow>
+
+    </TableLayout>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="*"
+        android:layout_marginTop="12dp">
+
+        <TableRow>
+            <ImageButton
+                android:id="@+id/btn_video_call"
+                android:layout_width="0dp"
+                android:layout_height="64dp"
+                android:layout_weight="1"
+                android:layout_margin="6dp"
+                android:background="@drawable/action_button"
+                android:src="@drawable/ic_video"
+                android:contentDescription="영상통화" />
+
+            <ImageButton
+                android:id="@+id/btn_dial"
+                android:layout_width="0dp"
+                android:layout_height="64dp"
+                android:layout_weight="1"
+                android:layout_margin="6dp"
+                android:background="@drawable/action_button"
+                android:src="@drawable/ic_phone"
+                android:contentDescription="다이얼링" />
+
+            <ImageButton
+                android:id="@+id/btn_delete"
+                android:layout_width="0dp"
+                android:layout_height="64dp"
+                android:layout_weight="1"
+                android:layout_margin="6dp"
+                android:background="@drawable/delete_button"
+                android:src="@drawable/ic_delete"
+                android:contentDescription="삭제" />
+        </TableRow>
+
+    </TableLayout>
+
+</LinearLayout>
