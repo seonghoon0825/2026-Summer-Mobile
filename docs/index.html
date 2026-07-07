@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>무신사 벤치마킹 커머스 앱 — 기말프로젝트 기획 발표</title>
+<meta name="description" content="무신사를 벤치마킹한 멀티모듈 커머스 앱 · 기말프로젝트 기획 발표 · 20210514 정성훈">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy-900:#0c1024;
+    --navy-800:#121734;
+    --blue:#4c7dff;
+    --blue-soft:#9db7ff;
+    --line:rgba(255,255,255,.12);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family:"Noto Sans KR",system-ui,-apple-system,sans-serif;
+    background:linear-gradient(160deg,var(--navy-900),var(--navy-800));
+    color:#fff;height:100vh;display:flex;flex-direction:column;overflow:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  header{
+    flex:0 0 auto;display:flex;align-items:center;gap:16px;
+    padding:14px clamp(16px,3vw,32px);border-bottom:1px solid var(--line);
+    background:rgba(0,0,0,.2);backdrop-filter:blur(8px);
+  }
+  .logo{
+    width:40px;height:40px;border-radius:11px;flex:0 0 auto;display:grid;place-items:center;
+    background:linear-gradient(150deg,#f96167,#e0454b);color:#fff;
+  }
+  .logo svg{width:22px;height:22px}
+  .titles{min-width:0;flex:1}
+  .titles h1{font-size:clamp(15px,2vw,20px);font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .titles p{font-size:clamp(11px,1.4vw,13px);color:var(--blue-soft);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .actions{display:flex;gap:10px;flex:0 0 auto}
+  .btn{
+    display:inline-flex;align-items:center;gap:7px;text-decoration:none;
+    font-size:13px;font-weight:700;padding:9px 15px;border-radius:10px;
+    border:1px solid var(--line);color:#e6ecff;background:rgba(255,255,255,.05);
+    transition:.18s;white-space:nowrap;cursor:pointer;
+  }
+  .btn:hover{background:var(--blue);border-color:var(--blue);color:#fff}
+  .btn svg{width:15px;height:15px}
+  .btn.primary{background:var(--blue);border-color:var(--blue);color:#fff}
+  .btn.primary:hover{background:#3a6bf0}
+
+  .stage{flex:1;min-height:0;position:relative;background:#05070f}
+  .stage iframe,.stage embed{width:100%;height:100%;border:0;display:block}
+
+  /* fallback message shown if the PDF can't be embedded (rare, some mobile browsers) */
+  .fallback{
+    position:absolute;inset:0;display:none;flex-direction:column;gap:16px;
+    align-items:center;justify-content:center;text-align:center;padding:32px;
+  }
+  .fallback p{color:rgba(255,255,255,.7);font-size:15px;line-height:1.6}
+
+  @media(max-width:600px){
+    .titles p{display:none}
+    .btn span{display:none}
+    .btn{padding:9px 11px}
+  }
+</style>
+</head>
+<body>
+  <header>
+    <div class="logo" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 3l4 2v5h-3v9H7V10H4V5l4-2 1.5 1.5a2.5 2.5 0 0 0 5 0z"/></svg>
+    </div>
+    <div class="titles">
+      <h1>무신사 벤치마킹 커머스 앱</h1>
+      <p>기말프로젝트 기획 발표 · 모바일프로그래밍 · 20210514 정성훈</p>
+    </div>
+    <div class="actions">
+      <a class="btn primary" href="presentation.pdf" target="_blank" rel="noopener" title="새 탭에서 전체화면으로 보기">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M10 14L21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+        <span>전체화면</span>
+      </a>
+      <a class="btn" href="presentation.pdf" download title="PDF 다운로드">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+        <span>다운로드</span>
+      </a>
+    </div>
+  </header>
+
+  <div class="stage">
+    <iframe src="presentation.pdf#view=FitH&toolbar=1" title="발표 자료 PDF"></iframe>
+    <div class="fallback" id="fallback">
+      <p>이 브라우저에서는 PDF를 바로 표시할 수 없습니다.<br>아래 버튼으로 열거나 내려받아 주세요.</p>
+      <a class="btn primary" href="presentation.pdf" target="_blank" rel="noopener">PDF 열기</a>
+    </div>
+  </div>
+
+  <script>
+    // Some mobile browsers can't inline-render PDFs; show a fallback if the frame stays empty.
+    window.addEventListener('load', function(){
+      var iframe = document.querySelector('.stage iframe');
+      setTimeout(function(){
+        try{
+          var doc = iframe.contentDocument;
+          if(doc && doc.body && doc.body.innerHTML.trim()===''){
+            iframe.style.display='none';
+            document.getElementById('fallback').style.display='flex';
+          }
+        }catch(e){ /* cross-origin / normal PDF viewer: do nothing */ }
+      }, 1200);
+    });
+  </script>
+</body>
+</html>
