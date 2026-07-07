@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#CDDC39"
+    tools:context=".SecondActivity">
+
+    <TextView
+        android:id="@+id/textViewSecond"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="두 번째 화면"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.1" />
+
+    <LinearLayout
+        android:id="@+id/buttonLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewSecond"
+        app:layout_constraintVertical_bias="0.3">
+
+        <Button
+            android:id="@+id/goMain2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="메인 화면으로" />
+
+        <Button
+            android:id="@+id/goThird2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="세 번째 화면으로" />
+
+        <Button
+            android:id="@+id/goFourth2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="네 번째 화면으로" />
+
+        <Button
+            android:id="@+id/finish2nd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="종료"
+            android:backgroundTint="#FF0000" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
