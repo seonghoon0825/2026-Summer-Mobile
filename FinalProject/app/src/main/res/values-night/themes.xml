@@ -1,0 +1,4 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- 다크 모드용 테마 (야간). Compose가 실제 색상을 그린다. -->
+    <style name="Theme.FinalProject" parent="android:Theme.Material.NoActionBar" />
+</resources>

@@ -1,0 +1,22 @@
+[
+  { "id": "r1", "productId": "p1", "rating": 5, "content": "기모가 두툼하고 핏이 예뻐요. 재구매 의사 있습니다.", "imageUrl": "https://picsum.photos/seed/r1/300/300", "author": "패션왕**" },
+  { "id": "r2", "productId": "p1", "rating": 4, "content": "무난하게 입기 좋아요. 다만 소매가 살짝 길어요.", "imageUrl": null, "author": "minsu_k" },
+  { "id": "r3", "productId": "p1", "rating": 5, "content": "가성비 최고. 색상도 사진과 동일합니다.", "imageUrl": null, "author": "코디마스터" },
+  { "id": "r4", "productId": "p2", "rating": 4, "content": "베이직템으로 딱이에요. 여러 장 샀습니다.", "imageUrl": "https://picsum.photos/seed/r4/300/300", "author": "daily_look" },
+  { "id": "r5", "productId": "p2", "rating": 3, "content": "생각보다 얇아요. 여름용으로는 괜찮네요.", "imageUrl": null, "author": "jjang_9" },
+  { "id": "r6", "productId": "p2", "rating": 5, "content": "핏 좋고 세탁 후에도 늘어나지 않아요.", "imageUrl": null, "author": "무신사러버" },
+  { "id": "r7", "productId": "p5", "rating": 5, "content": "두께감 좋고 기모가 따뜻해요. 겨울에 강추.", "imageUrl": "https://picsum.photos/seed/r7/300/300", "author": "winter_is" },
+  { "id": "r8", "productId": "p5", "rating": 4, "content": "핏은 좋은데 배송이 조금 느렸어요.", "imageUrl": null, "author": "hoodie_fan" },
+  { "id": "r9", "productId": "p7", "rating": 5, "content": "셋업으로 입으니 진짜 멋져요. 강력 추천!", "imageUrl": "https://picsum.photos/seed/r9/300/300", "author": "suit_up" },
+  { "id": "r10", "productId": "p7", "rating": 5, "content": "재질이 고급스럽습니다. 오버핏 예뻐요.", "imageUrl": null, "author": "office_king" },
+  { "id": "r11", "productId": "p9", "rating": 4, "content": "와이드핏 좋아요. 기장은 수선했습니다.", "imageUrl": null, "author": "denim_day" },
+  { "id": "r12", "productId": "p9", "rating": 5, "content": "색감 예쁘고 원단 두께도 적당해요.", "imageUrl": "https://picsum.photos/seed/r12/300/300", "author": "블루진" },
+  { "id": "r13", "productId": "p13", "rating": 5, "content": "역시 척70. 어디에나 잘 어울려요.", "imageUrl": null, "author": "sneaker_head" },
+  { "id": "r14", "productId": "p13", "rating": 4, "content": "발볼 좁은 편이라 반사이즈 업 추천.", "imageUrl": null, "author": "shoes_lover" },
+  { "id": "r15", "productId": "p14", "rating": 5, "content": "삼바 인생신발 인정. 코디 편해요.", "imageUrl": "https://picsum.photos/seed/r15/300/300", "author": "adi_das" },
+  { "id": "r16", "productId": "p14", "rating": 5, "content": "가벼워서 데일리로 신기 좋아요.", "imageUrl": null, "author": "retro_run" },
+  { "id": "r17", "productId": "p18", "rating": 4, "content": "튼튼하고 크기도 적당해요. 가성비 굿.", "imageUrl": null, "author": "eco_bag" },
+  { "id": "r18", "productId": "p18", "rating": 5, "content": "매일 들고다녀요. 색상 예뻐요.", "imageUrl": null, "author": "canvas_love" },
+  { "id": "r19", "productId": "p20", "rating": 4, "content": "머리 큰 편인데 잘 맞아요. 만족합니다.", "imageUrl": null, "author": "cap_daily" },
+  { "id": "r20", "productId": "p23", "rating": 5, "content": "따뜻하고 안 따가워요. 색상별로 샀어요.", "imageUrl": "https://picsum.photos/seed/r20/300/300", "author": "beanie_fan" }
+]

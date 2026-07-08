@@ -1,0 +1,9 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!--
+      Compose 전용 앱 테마.
+      실제 색상/타이포는 Compose(FinalProjectTheme)에서 그리므로,
+      XML 테마는 액션바 없는 기본 배경만 제공한다.
+      (com.google.android.material 라이브러리 없이 동작하도록 android:* 테마를 상속)
+    -->
+    <style name="Theme.FinalProject" parent="android:Theme.Material.Light.NoActionBar" />
+</resources>
