@@ -13,6 +13,7 @@ package kr.hnu.ice.finalproject.core.model
  * @param rating 평균 평점 (0.0 ~ 5.0)
  * @param reviewCount 리뷰 개수
  * @param description 상품 상세 설명
+ * @param originalPrice 세일 전 원래 가격. 세일 중이 아니면 null. (price는 현재 판매가)
  */
 data class Product(
     val id: String,
@@ -25,4 +26,8 @@ data class Product(
     val rating: Double,
     val reviewCount: Int,
     val description: String,
-)
+    val originalPrice: Int? = null,
+) {
+    /** 현재 세일 중인지: 원가가 있고 현재 판매가(price)보다 높으면 세일 중이다. */
+    val isOnSale: Boolean get() = originalPrice != null && originalPrice > price
+}

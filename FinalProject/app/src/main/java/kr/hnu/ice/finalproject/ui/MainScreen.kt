@@ -10,6 +10,7 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavDestination.Companion.hierarchy
@@ -35,6 +36,9 @@ import kr.hnu.ice.finalproject.navigation.TopLevelDestination
 fun MainScreen(
     navController: NavHostController = rememberNavController(),
     viewModel: MainViewModel = hiltViewModel(),
+    // 가격 인하 알림 탭으로 전달된 productId(있으면 상세로 이동). 소비 후 onDeepLinkHandled 호출.
+    deepLinkProductId: String? = null,
+    onDeepLinkHandled: () -> Unit = {},
 ) {
     val authState by viewModel.authState.collectAsStateWithLifecycle()
     val cartCount by viewModel.cartCount.collectAsStateWithLifecycle()
@@ -45,6 +49,17 @@ fun MainScreen(
         else -> {
             // 로그인 여부에 따라 시작 화면 결정(한 번만 결정되어 NavHost에 전달됨)
             val startDestination = if (state == AuthUiState.Authenticated) Routes.HOME else Routes.LOGIN
+
+            // 로그인 상태일 때만 알림 딥링크로 상세 화면으로 이동한다.
+            // (미로그인 시엔 소비하지 않고 남겨 두어, 로그인 후 이동되도록 한다)
+            LaunchedEffect(deepLinkProductId, startDestination) {
+                val productId = deepLinkProductId
+                if (productId != null && startDestination == Routes.HOME) {
+                    navController.navigate(Routes.productDetail(productId))
+                    onDeepLinkHandled()
+                }
+            }
+
             MainContent(
                 navController = navController,
                 startDestination = startDestination,

@@ -42,14 +42,16 @@ class HomeViewModel @Inject constructor(
     val uiState: StateFlow<UiState<HomeUiModel>> = combine(
         productRepository.getProducts(),
         productRepository.getRecentViewedProducts(),
-    ) { products, recentViewed ->
+        // 추천 로직은 Repository가 담당(이미 본 상품/장바구니 상품 제외).
+        productRepository.getRecommendations(),
+    ) { products, recentViewed, recommendations ->
         val model = HomeUiModel(
             banners = DEFAULT_BANNERS,
             recommended = products,
             // 랭킹: 리뷰 수 기준 상위 10개
             ranking = products.sortedByDescending { it.reviewCount }.take(RANKING_SIZE),
             recentViewed = recentViewed,
-            categoryRecommendations = buildCategoryRecommendations(products, recentViewed),
+            categoryRecommendations = recommendations,
         )
         UiState.Success(model) as UiState<HomeUiModel>
     }
@@ -60,34 +62,14 @@ class HomeViewModel @Inject constructor(
             initialValue = UiState.Loading,
         )
 
-    /**
-     * 최근 본 상품과 같은 카테고리의 추천 상품을 만든다.
-     * 최근 본 순서대로 카테고리 우선순위를 두고, 이미 본 상품은 제외한다.
-     */
-    private fun buildCategoryRecommendations(
-        products: List<Product>,
-        recentViewed: List<Product>,
-    ): List<Product> {
-        if (recentViewed.isEmpty()) return emptyList()
-        val recentIds = recentViewed.map { it.id }.toSet()
-        val orderedCategoryIds = recentViewed.map { it.category.id }.distinct()
-        return orderedCategoryIds
-            .flatMap { categoryId ->
-                products.filter { it.category.id == categoryId && it.id !in recentIds }
-            }
-            .distinctBy { it.id }
-            .take(RECOMMENDATION_SIZE)
-    }
-
     private companion object {
         const val RANKING_SIZE = 10
-        const val RECOMMENDATION_SIZE = 10
 
         // Mock 배너 (무료 이미지)
         val DEFAULT_BANNERS = listOf(
-            Banner("https://picsum.photos/seed/banner1/800/400", "여름 시즌 오프", "인기 브랜드 최대 50%"),
-            Banner("https://picsum.photos/seed/banner2/800/400", "신상 입고", "이번 주 뉴 아이템"),
-            Banner("https://picsum.photos/seed/banner3/800/400", "무신사 추천", "지금 뜨는 코디"),
+            Banner("https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=800&h=400&q=80", "여름 시즌 오프", "인기 브랜드 최대 50%"),
+            Banner("https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?auto=format&fit=crop&w=800&h=400&q=80", "신상 입고", "이번 주 뉴 아이템"),
+            Banner("https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&h=400&q=80", "무신사 추천", "지금 뜨는 코디"),
         )
     }
 }

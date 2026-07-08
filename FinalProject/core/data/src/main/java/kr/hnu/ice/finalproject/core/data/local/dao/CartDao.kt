@@ -14,6 +14,10 @@ interface CartDao {
     @Query("SELECT * FROM cart_items ORDER BY addedAt DESC")
     fun observeAll(): Flow<List<CartItemEntity>>
 
+    /** 장바구니에 담긴 상품 id(옵션 무관, 중복 제거). 추천에서 제외할 때 사용. */
+    @Query("SELECT DISTINCT productId FROM cart_items")
+    fun observeProductIds(): Flow<List<String>>
+
     /** 같은 옵션이 이미 있으면 덮어쓴다(REPLACE). */
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun upsert(item: CartItemEntity)

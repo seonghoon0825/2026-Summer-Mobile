@@ -37,30 +37,27 @@ class PriceAlertViewModel @Inject constructor(
             }
 
             // Mock: 찜한 상품들에 임의 세일가 적용(가격 인하 시뮬레이션)
-            val originalPrices = wishItems.associate { it.product.id to it.product.price }
-            saleRepository.applyMockSale(originalPrices)
+            saleRepository.applyMockSale(wishItems.associate { it.product.id to it.product.price })
 
-            val sales = saleRepository.observeSalePrices().first()
-            val drops = wishItems.mapNotNull { item ->
-                val salePrice = sales[item.product.id] ?: return@mapNotNull null
-                if (salePrice < item.product.price) {
-                    PriceDrop(
-                        brand = item.product.brand,
-                        name = item.product.name,
-                        oldPrice = item.product.price,
-                        newPrice = salePrice,
-                    )
-                } else {
-                    null
-                }
-            }
-
-            if (drops.isEmpty()) {
+            // 세일 판단/필터링은 Repository가 담당한다.
+            val onSale = wishRepository.getOnSaleWishItems().first()
+            if (onSale.isEmpty()) {
                 _messages.emit("가격이 내려간 찜 상품이 없어요.")
-            } else {
-                notifier.notifyPriceDrops(drops)
-                _messages.emit("${drops.size}개 상품의 가격 인하 알림을 보냈어요.")
+                return@launch
             }
+
+            notifier.notifyPriceDrops(
+                onSale.map { sale ->
+                    PriceDrop(
+                        productId = sale.product.id,
+                        brand = sale.product.brand,
+                        name = sale.product.name,
+                        oldPrice = sale.originalPrice,
+                        newPrice = sale.salePrice,
+                    )
+                },
+            )
+            _messages.emit("${onSale.size}개 상품의 가격 인하 알림을 보냈어요.")
         }
     }
 }

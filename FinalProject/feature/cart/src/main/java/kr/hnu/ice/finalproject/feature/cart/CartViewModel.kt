@@ -11,6 +11,8 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kr.hnu.ice.finalproject.core.data.repository.CartRepository
+import kr.hnu.ice.finalproject.core.data.repository.OrderDraft
+import kr.hnu.ice.finalproject.core.data.repository.OrderDraftRepository
 import kr.hnu.ice.finalproject.core.model.CartItem
 import kr.hnu.ice.finalproject.core.model.ProductOption
 import javax.inject.Inject
@@ -45,6 +47,7 @@ data class CartUiState(
 @HiltViewModel
 class CartViewModel @Inject constructor(
     private val cartRepository: CartRepository,
+    private val orderDraftRepository: OrderDraftRepository,
 ) : ViewModel() {
 
     // 기본은 전체 선택 → 사용자가 해제한 키만 저장한다(새로 담긴 항목은 자동 선택됨).
@@ -83,6 +86,20 @@ class CartViewModel @Inject constructor(
     /** 쿠폰 적용/해제(실시간으로 금액이 재계산된다). */
     fun selectCoupon(coupon: Coupon?) {
         _selectedCoupon.value = coupon
+    }
+
+    /**
+     * 주문하기 직전에 호출: 현재 선택 항목/쿠폰 할인액을 주문 초안으로 기록한다.
+     * 주문 흐름(OrderViewModel)이 이 초안을 읽어 같은 항목·금액으로 주문서를 만든다.
+     */
+    fun prepareOrder() {
+        val state = uiState.value
+        orderDraftRepository.setDraft(
+            OrderDraft(
+                selectedKeys = state.selectedKeys,
+                couponDiscount = state.summary.couponDiscount,
+            ),
+        )
     }
 
     // ---- 선택 ----
@@ -160,7 +177,3 @@ class CartViewModel @Inject constructor(
         const val REWARD_RATE = 0.01 // 적립률 1%
     }
 }
-
-/** 장바구니 항목의 고유 키(상품 + 옵션). */
-val CartItem.key: String
-    get() = "${product.id}_${selectedOption.color}_${selectedOption.size}"

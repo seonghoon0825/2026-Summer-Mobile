@@ -211,12 +211,13 @@ private fun DetailContent(
     modifier: Modifier = Modifier,
 ) {
     val product = data.product
-    // 단일 이미지를 갤러리처럼 보이도록 파생 이미지 3장 구성
+    // 단일 이미지를 갤러리처럼 보이도록 같은 사진의 크롭 3장 구성
     val images = remember(product.id) {
+        val base = product.imageUrl.substringBefore("?")
         listOf(
             product.imageUrl,
-            "https://picsum.photos/seed/${product.id}b/600/700",
-            "https://picsum.photos/seed/${product.id}c/600/700",
+            "$base?auto=format&fit=crop&crop=top&w=600&h=700&q=80",
+            "$base?auto=format&fit=crop&crop=bottom&w=600&h=700&q=80",
         )
     }
 

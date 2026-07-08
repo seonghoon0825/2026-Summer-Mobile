@@ -1,7 +1,7 @@
 [
   {
     "id": "p1", "name": "어센틱 로고 스웨트셔츠", "brand": "커버낫", "price": 59000,
-    "imageUrl": "https://picsum.photos/seed/p1/400/500", "categoryId": "top",
+    "imageUrl": "https://images.unsplash.com/photo-1578681994506-b8f463449011?auto=format&fit=crop&w=400&h=500&q=80", "categoryId": "top",
     "rating": 4.5, "reviewCount": 128, "description": "부드러운 기모 안감의 데일리 스웨트셔츠입니다.",
     "options": [
       { "color": "블랙", "size": "M", "stock": 12 },
@@ -10,8 +10,8 @@
     ]
   },
   {
-    "id": "p2", "name": "베이직 코튼 반팔티", "brand": "무신사 스탠다드", "price": 12900,
-    "imageUrl": "https://picsum.photos/seed/p2/400/500", "categoryId": "top",
+    "id": "p2", "name": "베이직 코튼 반팔티", "brand": "무신사 스탠다드", "price": 12900, "salePrice": 9900,
+    "imageUrl": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=400&h=500&q=80", "categoryId": "top",
     "rating": 4.3, "reviewCount": 542, "description": "매일 입기 좋은 20수 코튼 반팔 티셔츠.",
     "options": [
       { "color": "화이트", "size": "S", "stock": 30 },
@@ -21,7 +21,7 @@
   },
   {
     "id": "p3", "name": "옥스포드 셔츠", "brand": "유니클로", "price": 39900,
-    "imageUrl": "https://picsum.photos/seed/p3/400/500", "categoryId": "top",
+    "imageUrl": "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=400&h=500&q=80", "categoryId": "top",
     "rating": 4.1, "reviewCount": 89, "description": "포멀과 캐주얼 모두 어울리는 옥스포드 셔츠.",
     "options": [
       { "color": "스카이블루", "size": "M", "stock": 10 },
@@ -30,7 +30,7 @@
   },
   {
     "id": "p4", "name": "니트 가디건", "brand": "라퍼지스토어", "price": 45000,
-    "imageUrl": "https://picsum.photos/seed/p4/400/500", "categoryId": "top",
+    "imageUrl": "https://images.unsplash.com/photo-1610288311735-39b7facbd095?auto=format&fit=crop&w=400&h=500&q=80", "categoryId": "top",
     "rating": 4.6, "reviewCount": 210, "description": "봄가을 레이어드에 좋은 오버핏 니트 가디건.",
     "options": [
       { "color": "아이보리", "size": "FREE", "stock": 15 },
@@ -39,7 +39,7 @@
   },
   {
     "id": "p5", "name": "후드 집업", "brand": "디스이즈네버댓", "price": 79000,
-    "imageUrl": "https://picsum.photos/seed/p5/400/500", "categoryId": "outer",
+    "imageUrl": "https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=400&h=500&q=80", "categoryId": "outer",
     "rating": 4.7, "reviewCount": 305, "description": "두툼한 헤비웨이트 후드 집업.",
     "options": [
       { "color": "블랙", "size": "L", "stock": 6 },
@@ -48,7 +48,7 @@
   },
   {
     "id": "p6", "name": "MA-1 봄버 자켓", "brand": "커버낫", "price": 119000,
-    "imageUrl": "https://picsum.photos/seed/p6/400/500", "categoryId": "outer",
+    "imageUrl": "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=400&h=500&q=80", "categoryId": "outer",
     "rating": 4.4, "reviewCount": 76, "description": "클래식한 실루엣의 MA-1 봄버 자켓.",
     "options": [
       { "color": "카키", "size": "M", "stock": 5 },
@@ -57,7 +57,7 @@
   },
   {
     "id": "p7", "name": "오버핏 블레이저", "brand": "인사일런스", "price": 158000,
-    "imageUrl": "https://picsum.photos/seed/p7/400/500", "categoryId": "outer",
+    "imageUrl": "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=400&h=500&q=80", "categoryId": "outer",
     "rating": 4.8, "reviewCount": 142, "description": "셋업 가능한 미니멀 오버핏 블레이저.",
     "options": [
       { "color": "차콜", "size": "48", "stock": 7 },
@@ -66,7 +66,7 @@
   },
   {
     "id": "p8", "name": "플리스 집업", "brand": "내셔널지오그래픽", "price": 99000,
-    "imageUrl": "https://picsum.photos/seed/p8/400/500", "categoryId": "outer",
+    "imageUrl": "https://images.unsplash.com/photo-1604644401890-0bd678c83788?auto=format&fit=crop&w=400&h=500&q=80", "categoryId": "outer",
     "rating": 4.2, "reviewCount": 421, "description": "포근한 뽀글이 플리스 집업.",
     "options": [
       { "color": "크림", "size": "M", "stock": 20 },
@@ -75,7 +75,7 @@
   },
   {
     "id": "p9", "name": "와이드 데님 팬츠", "brand": "브랜디드", "price": 69000,
-    "imageUrl": "https://picsum.photos/seed/p9/400/500", "categoryId": "pants",
+    "imageUrl": "https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=400&h=500&q=80", "categoryId": "pants",
     "rating": 4.5, "reviewCount": 188, "description": "편안한 와이드 핏의 데님 팬츠.",
     "options": [
       { "color": "라이트블루", "size": "30", "stock": 8 },
@@ -84,7 +84,7 @@
   },
   {
     "id": "p10", "name": "코튼 슬랙스", "brand": "무신사 스탠다드", "price": 34900,
-    "imageUrl": "https://picsum.photos/seed/p10/400/500", "categoryId": "pants",
+    "imageUrl": "https://images.unsplash.com/photo-1473966968600-fa801b869a1a?auto=format&fit=crop&w=400&h=500&q=80", "categoryId": "pants",
     "rating": 4.3, "reviewCount": 512, "description": "구김이 적은 데일리 코튼 슬랙스.",
     "options": [
       { "color": "블랙", "size": "30", "stock": 14 },
@@ -93,7 +93,7 @@
   },
   {
     "id": "p11", "name": "카고 조거 팬츠", "brand": "디스이즈네버댓", "price": 78000,
-    "imageUrl": "https://picsum.photos/seed/p11/400/500", "categoryId": "pants",
+    "imageUrl": "https://images.unsplash.com/photo-1552902865-b72c031ac5ea?auto=format&fit=crop&w=400&h=500&q=80", "categoryId": "pants",
     "rating": 4.4, "reviewCount": 97, "description": "다양한 포켓의 카고 조거 팬츠.",
     "options": [
       { "color": "블랙", "size": "M", "stock": 9 },
@@ -102,7 +102,7 @@
   },
   {
     "id": "p12", "name": "트레이닝 스웨트팬츠", "brand": "챔피온", "price": 49000,
-    "imageUrl": "https://picsum.photos/seed/p12/400/500", "categoryId": "pants",
+    "imageUrl": "https://images.unsplash.com/photo-1544441893-675973e31985?auto=format&fit=crop&w=400&h=500&q=80", "categoryId": "pants",
     "rating": 4.6, "reviewCount": 233, "description": "기모 안감의 편안한 스웨트팬츠.",
     "options": [
       { "color": "그레이", "size": "M", "stock": 18 },
@@ -111,7 +111,7 @@
   },
   {
     "id": "p13", "name": "척 70 하이 스니커즈", "brand": "컨버스", "price": 89000,
-    "imageUrl": "https://picsum.photos/seed/p13/400/500", "categoryId": "shoes",
+    "imageUrl": "https://images.unsplash.com/photo-1607522370275-f14206abe5d3?auto=format&fit=crop&w=400&h=500&q=80", "categoryId": "shoes",
     "rating": 4.7, "reviewCount": 654, "description": "클래식 하이탑 캔버스 스니커즈.",
     "options": [
       { "color": "블랙", "size": "260", "stock": 10 },
@@ -120,7 +120,7 @@
   },
   {
     "id": "p14", "name": "삼바 OG 스니커즈", "brand": "아디다스", "price": 139000,
-    "imageUrl": "https://picsum.photos/seed/p14/400/500", "categoryId": "shoes",
+    "imageUrl": "https://images.unsplash.com/photo-1518002171953-a080ee817e1f?auto=format&fit=crop&w=400&h=500&q=80", "categoryId": "shoes",
     "rating": 4.8, "reviewCount": 389, "description": "레트로 감성의 삼바 스니커즈.",
     "options": [
       { "color": "블랙/화이트", "size": "265", "stock": 4 },
@@ -129,7 +129,7 @@
   },
   {
     "id": "p15", "name": "990v5 러닝화", "brand": "뉴발란스", "price": 219000,
-    "imageUrl": "https://picsum.photos/seed/p15/400/500", "categoryId": "shoes",
+    "imageUrl": "https://images.unsplash.com/photo-1465453869711-7e174808ace9?auto=format&fit=crop&w=400&h=500&q=80", "categoryId": "shoes",
     "rating": 4.6, "reviewCount": 176, "description": "메이드 인 USA 프리미엄 러닝화.",
     "options": [
       { "color": "그레이", "size": "270", "stock": 5 },
@@ -138,7 +138,7 @@
   },
   {
     "id": "p16", "name": "로퍼", "brand": "폴러", "price": 129000,
-    "imageUrl": "https://picsum.photos/seed/p16/400/500", "categoryId": "shoes",
+    "imageUrl": "https://images.unsplash.com/photo-1533867617858-e7b97e060509?auto=format&fit=crop&w=400&h=500&q=80", "categoryId": "shoes",
     "rating": 4.2, "reviewCount": 58, "description": "가죽 소재의 데일리 로퍼.",
     "options": [
       { "color": "브라운", "size": "260", "stock": 6 },
@@ -147,7 +147,7 @@
   },
   {
     "id": "p17", "name": "레더 크로스백", "brand": "마르지엘라", "price": 189000,
-    "imageUrl": "https://picsum.photos/seed/p17/400/500", "categoryId": "bag",
+    "imageUrl": "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=400&h=500&q=80", "categoryId": "bag",
     "rating": 4.5, "reviewCount": 64, "description": "미니멀한 디자인의 레더 크로스백.",
     "options": [
       { "color": "블랙", "size": "FREE", "stock": 7 }
@@ -155,7 +155,7 @@
   },
   {
     "id": "p18", "name": "캔버스 에코백", "brand": "무신사 스탠다드", "price": 19900,
-    "imageUrl": "https://picsum.photos/seed/p18/400/500", "categoryId": "bag",
+    "imageUrl": "https://images.unsplash.com/photo-1572196284554-4e321b0e7e0b?auto=format&fit=crop&w=400&h=500&q=80", "categoryId": "bag",
     "rating": 4.4, "reviewCount": 298, "description": "튼튼한 코튼 캔버스 에코백.",
     "options": [
       { "color": "아이보리", "size": "FREE", "stock": 40 },
@@ -164,7 +164,7 @@
   },
   {
     "id": "p19", "name": "백팩", "brand": "페넥", "price": 98000,
-    "imageUrl": "https://picsum.photos/seed/p19/400/500", "categoryId": "bag",
+    "imageUrl": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=400&h=500&q=80", "categoryId": "bag",
     "rating": 4.6, "reviewCount": 121, "description": "노트북 수납이 가능한 데일리 백팩.",
     "options": [
       { "color": "차콜", "size": "FREE", "stock": 9 }
@@ -172,7 +172,7 @@
   },
   {
     "id": "p20", "name": "볼캡", "brand": "뉴에라", "price": 39000,
-    "imageUrl": "https://picsum.photos/seed/p20/400/500", "categoryId": "acc",
+    "imageUrl": "https://images.unsplash.com/photo-1521369909029-2afed882baee?auto=format&fit=crop&w=400&h=500&q=80", "categoryId": "acc",
     "rating": 4.3, "reviewCount": 205, "description": "심플한 로고의 코튼 볼캡.",
     "options": [
       { "color": "블랙", "size": "FREE", "stock": 22 },
@@ -181,7 +181,7 @@
   },
   {
     "id": "p21", "name": "머플러", "brand": "아크네", "price": 159000,
-    "imageUrl": "https://picsum.photos/seed/p21/400/500", "categoryId": "acc",
+    "imageUrl": "https://images.unsplash.com/photo-1520903920243-00d872a2d1c9?auto=format&fit=crop&w=400&h=500&q=80", "categoryId": "acc",
     "rating": 4.7, "reviewCount": 47, "description": "부드러운 울 혼방 머플러.",
     "options": [
       { "color": "그레이", "size": "FREE", "stock": 6 },
@@ -190,7 +190,7 @@
   },
   {
     "id": "p22", "name": "가죽 벨트", "brand": "폴러", "price": 45000,
-    "imageUrl": "https://picsum.photos/seed/p22/400/500", "categoryId": "acc",
+    "imageUrl": "https://images.unsplash.com/photo-1624222247344-550fb60583dc?auto=format&fit=crop&w=400&h=500&q=80", "categoryId": "acc",
     "rating": 4.1, "reviewCount": 33, "description": "심플한 버클의 소가죽 벨트.",
     "options": [
       { "color": "브라운", "size": "95", "stock": 12 },
@@ -199,7 +199,7 @@
   },
   {
     "id": "p23", "name": "니트 비니", "brand": "칼하트", "price": 42000,
-    "imageUrl": "https://picsum.photos/seed/p23/400/500", "categoryId": "acc",
+    "imageUrl": "https://images.unsplash.com/photo-1510598969022-c4c6c5d05769?auto=format&fit=crop&w=400&h=500&q=80", "categoryId": "acc",
     "rating": 4.5, "reviewCount": 156, "description": "포근한 워치 비니.",
     "options": [
       { "color": "블랙", "size": "FREE", "stock": 25 },
@@ -208,7 +208,7 @@
   },
   {
     "id": "p24", "name": "코듀로이 셔츠 자켓", "brand": "라퍼지스토어", "price": 89000,
-    "imageUrl": "https://picsum.photos/seed/p24/400/500", "categoryId": "outer",
+    "imageUrl": "https://images.unsplash.com/photo-1611312449408-fcece27cdbb7?auto=format&fit=crop&w=400&h=500&q=80", "categoryId": "outer",
     "rating": 4.4, "reviewCount": 71, "description": "가을에 걸치기 좋은 코듀로이 셔츠형 자켓.",
     "options": [
       { "color": "브라운", "size": "M", "stock": 7 },

@@ -24,18 +24,23 @@ fun CategoryDto.toDomain(): Category = Category(
  * categoryId를 실제 Category 객체로 치환하기 위해 카테고리 맵을 함께 받는다.
  * (맵에 없으면 id를 이름으로 갖는 임시 Category로 대체)
  */
-fun ProductDto.toDomain(categoryMap: Map<String, Category>): Product = Product(
-    id = id,
-    name = name,
-    brand = brand,
-    price = price,
-    imageUrl = imageUrl,
-    category = categoryMap[categoryId] ?: Category(categoryId, categoryId),
-    options = options.map { it.toDomain() },
-    rating = rating,
-    reviewCount = reviewCount,
-    description = description,
-)
+fun ProductDto.toDomain(categoryMap: Map<String, Category>): Product {
+    // salePrice가 정상가보다 낮으면 세일 중: price=세일가, originalPrice=정상가로 매핑.
+    val onSale = salePrice != null && salePrice < price
+    return Product(
+        id = id,
+        name = name,
+        brand = brand,
+        price = if (onSale) salePrice!! else price,
+        imageUrl = imageUrl,
+        category = categoryMap[categoryId] ?: Category(categoryId, categoryId),
+        options = options.map { it.toDomain() },
+        rating = rating,
+        reviewCount = reviewCount,
+        description = description,
+        originalPrice = if (onSale) price else null,
+    )
+}
 
 fun ReviewDto.toDomain(): Review = Review(
     id = id,

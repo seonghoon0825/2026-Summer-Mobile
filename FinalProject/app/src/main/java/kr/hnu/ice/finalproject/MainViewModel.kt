@@ -57,4 +57,21 @@ class MainViewModel @Inject constructor(
             started = SharingStarted.WhileSubscribed(5_000),
             initialValue = false,
         )
+
+    // 접근성 설정(DataStore). 글자 크기 배율 + 고대비를 AppTheme에 전달한다.
+    val fontScale: StateFlow<Float> = userPreferencesRepository.userData
+        .map { it.fontSize.scale }
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5_000),
+            initialValue = 1f,
+        )
+
+    val highContrast: StateFlow<Boolean> = userPreferencesRepository.userData
+        .map { it.highContrast }
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5_000),
+            initialValue = false,
+        )
 }

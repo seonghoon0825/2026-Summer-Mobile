@@ -31,10 +31,9 @@ android {
 }
 
 dependencies {
-    // core 계층 (아래로만 의존)
+    // core 계층 (아래로만 의존) — core:common은 이 모듈에서 쓰지 않아 선언하지 않는다
     implementation(project(":core:data"))
     implementation(project(":core:designsystem"))
-    implementation(project(":core:common"))
 
     // Compose
     implementation(platform(libs.androidx.compose.bom))

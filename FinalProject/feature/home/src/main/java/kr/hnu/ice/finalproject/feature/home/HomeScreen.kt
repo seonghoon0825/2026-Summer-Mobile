@@ -88,7 +88,7 @@ private fun HomeContent(
         // 최근 본 상품 기반 개인화 추천 (최근 본 게 있을 때만 노출)
         if (data.categoryRecommendations.isNotEmpty()) {
             item(span = { GridItemSpan(maxLineSpan) }) {
-                SectionHeader("최근 본 상품과 비슷한 상품")
+                SectionHeader("최근 본 상품 기반 추천")
             }
             item(span = { GridItemSpan(maxLineSpan) }) {
                 HorizontalProductRow(data.categoryRecommendations, onProductClick)
@@ -223,7 +223,7 @@ private fun RankingRow(
     }
 }
 
-/** 최근 본 상품 자리. (STEP 15에서 실제 데이터 채움 — 지금은 비어있으면 안내 문구) */
+/** 최근 본 상품 행. 비어있으면 안내 문구를 보여준다. */
 @Composable
 private fun RecentViewedRow(
     recentViewed: List<Product>,

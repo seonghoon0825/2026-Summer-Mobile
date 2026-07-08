@@ -113,7 +113,11 @@ fun CartScreen(
             summary = state.summary,
             selectedCoupon = state.selectedCoupon,
             onCouponClick = { showCouponSheet = true },
-            onOrderClick = onOrderClick,
+            // 주문 직전 선택 항목/쿠폰을 초안으로 기록한 뒤 주문 화면으로 이동
+            onOrderClick = {
+                viewModel.prepareOrder()
+                onOrderClick()
+            },
         )
     }
 

@@ -43,6 +43,8 @@ class CartRepositoryImplTest {
     private class FakeCartDao : CartDao {
         private val state = MutableStateFlow<List<CartItemEntity>>(emptyList())
         override fun observeAll(): Flow<List<CartItemEntity>> = state
+        override fun observeProductIds(): Flow<List<String>> =
+            state.map { list -> list.map { it.productId }.distinct() }
         override suspend fun upsert(item: CartItemEntity) {
             val key = Triple(item.productId, item.color, item.size)
             state.value = state.value.filterNot { Triple(it.productId, it.color, it.size) == key } + item
@@ -68,6 +70,7 @@ class CartRepositoryImplTest {
         override fun getCategories(): Flow<List<Category>> = flowOf(emptyList())
         override suspend fun addRecentViewed(productId: String) = Unit
         override fun getRecentViewedProducts(): Flow<List<Product>> = flowOf(emptyList())
+        override fun getRecommendations(): Flow<List<Product>> = flowOf(emptyList())
     }
 
     private class TestDispatcherProvider : DispatcherProvider {

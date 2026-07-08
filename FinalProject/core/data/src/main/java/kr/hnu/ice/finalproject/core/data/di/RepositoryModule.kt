@@ -10,6 +10,8 @@ import kr.hnu.ice.finalproject.core.data.repository.CartRepository
 import kr.hnu.ice.finalproject.core.data.repository.CartRepositoryImpl
 import kr.hnu.ice.finalproject.core.data.repository.CompareRepository
 import kr.hnu.ice.finalproject.core.data.repository.CompareRepositoryImpl
+import kr.hnu.ice.finalproject.core.data.repository.OrderDraftRepository
+import kr.hnu.ice.finalproject.core.data.repository.OrderDraftRepositoryImpl
 import kr.hnu.ice.finalproject.core.data.repository.OrderRepository
 import kr.hnu.ice.finalproject.core.data.repository.OrderRepositoryImpl
 import kr.hnu.ice.finalproject.core.data.repository.ProductRepository
@@ -54,6 +56,10 @@ abstract class RepositoryModule {
     @Binds
     @Singleton
     abstract fun bindOrderRepository(impl: OrderRepositoryImpl): OrderRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindOrderDraftRepository(impl: OrderDraftRepositoryImpl): OrderDraftRepository
 
     @Binds
     @Singleton

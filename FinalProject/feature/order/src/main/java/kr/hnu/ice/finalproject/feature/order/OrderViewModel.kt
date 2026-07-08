@@ -11,6 +11,7 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kr.hnu.ice.finalproject.core.data.repository.CartRepository
+import kr.hnu.ice.finalproject.core.data.repository.OrderDraftRepository
 import kr.hnu.ice.finalproject.core.data.repository.OrderRepository
 import kr.hnu.ice.finalproject.core.model.CartItem
 import kr.hnu.ice.finalproject.core.model.Order
@@ -52,22 +53,29 @@ data class OrderUiState(
 
 /**
  * 주문 ViewModel. 주문서→결제→완료 화면이 공유한다(중첩 그래프에 스코프).
- * 결제는 실제 없이 2초 지연으로 시뮬레이션하고, 성공 시 OrderRepository로 저장 + 장바구니 비우기.
+ * 장바구니가 기록한 주문 초안(선택 항목/쿠폰 할인)을 읽어 동일한 구성·금액으로 주문서를 만들고,
+ * 결제는 실제 없이 2초 지연으로 시뮬레이션한다. 성공 시 주문 저장 + 주문한 항목만 장바구니에서 제거.
  */
 @HiltViewModel
 class OrderViewModel @Inject constructor(
     private val cartRepository: CartRepository,
     private val orderRepository: OrderRepository,
+    private val orderDraftRepository: OrderDraftRepository,
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(OrderUiState())
     val uiState: StateFlow<OrderUiState> = _uiState.asStateFlow()
 
     init {
-        // 주문 흐름 진입 시점의 장바구니를 스냅샷으로 로드(이후 장바구니가 비워져도 유지)
+        // 주문 흐름 진입 시점의 장바구니를 스냅샷으로 로드(이후 장바구니가 비워져도 유지).
+        // 초안이 있으면 장바구니에서 선택한 항목만 담고, 쿠폰 할인액을 그대로 승계한다.
         viewModelScope.launch {
-            val items = cartRepository.getCartItems().first()
-            _uiState.update { it.copy(items = items, isLoading = false) }
+            val draft = orderDraftRepository.getDraft()
+            val allItems = cartRepository.getCartItems().first()
+            val items = draft?.selectedKeys?.let { keys -> allItems.filter { it.key in keys } } ?: allItems
+            _uiState.update {
+                it.copy(items = items, discount = draft?.couponDiscount ?: 0, isLoading = false)
+            }
             recalculate()
         }
     }
@@ -77,7 +85,7 @@ class OrderViewModel @Inject constructor(
     fun onAddressChange(value: String) = _uiState.update { it.copy(address = value) }
     fun onPaymentMethodChange(method: PaymentMethod) = _uiState.update { it.copy(paymentMethod = method) }
 
-    /** 결제 시뮬레이션: 2초 로딩 후 주문 저장 + 장바구니 비우기 → 성공. */
+    /** 결제 시뮬레이션: 2초 로딩 후 주문 저장 + 주문한 항목만 장바구니에서 제거 → 성공. */
     fun pay() {
         val state = _uiState.value
         if (!state.canPay || state.paymentState != PaymentState.Idle) return
@@ -87,7 +95,9 @@ class OrderViewModel @Inject constructor(
 
             val fullAddress = "${state.address} (${state.recipient}, ${state.phone})"
             val order = orderRepository.createOrder(items = state.items, address = fullAddress)
-            cartRepository.clearCart()
+            // 전체 비우기가 아니라 주문한 항목만 제거(선택 안 한 항목은 장바구니에 남는다)
+            state.items.forEach { cartRepository.removeFromCart(it.product.id, it.selectedOption) }
+            orderDraftRepository.clearDraft()
 
             _uiState.update { it.copy(paymentState = PaymentState.Success, createdOrder = order) }
         }
@@ -96,13 +106,12 @@ class OrderViewModel @Inject constructor(
     private fun recalculate() {
         _uiState.update { state ->
             val subtotal = state.items.sumOf { it.lineTotal }
-            val discount = (subtotal * 0.05).toInt()
             val shipping = if (subtotal == 0 || subtotal >= FREE_SHIPPING_THRESHOLD) 0 else SHIPPING_FEE
+            // 할인은 장바구니에서 승계한 쿠폰 할인액(state.discount)을 그대로 사용한다.
             state.copy(
                 subtotal = subtotal,
-                discount = discount,
                 shippingFee = shipping,
-                total = subtotal - discount + shipping,
+                total = subtotal - state.discount + shipping,
             )
         }
     }

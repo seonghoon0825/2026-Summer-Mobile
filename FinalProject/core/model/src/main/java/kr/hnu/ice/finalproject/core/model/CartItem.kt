@@ -14,4 +14,7 @@ data class CartItem(
 ) {
     /** 이 항목의 합계 금액 (단가 × 수량). */
     val lineTotal: Int get() = product.price * quantity
+
+    /** 항목의 고유 키(상품 + 옵션). 장바구니 선택/주문 필터링에 쓴다. */
+    val key: String get() = "${product.id}_${selectedOption.color}_${selectedOption.size}"
 }

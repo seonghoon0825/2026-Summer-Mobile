@@ -1,6 +1,7 @@
 package kr.hnu.ice.finalproject.core.data.repository
 
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
@@ -9,6 +10,7 @@ import kotlinx.coroutines.sync.withLock
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import kr.hnu.ice.finalproject.core.common.coroutine.DispatcherProvider
+import kr.hnu.ice.finalproject.core.data.local.dao.CartDao
 import kr.hnu.ice.finalproject.core.data.local.dao.RecentProductDao
 import kr.hnu.ice.finalproject.core.data.local.entity.RecentProductEntity
 import kr.hnu.ice.finalproject.core.data.remote.AssetReader
@@ -38,6 +40,13 @@ interface ProductRepository {
 
     /** 최근 본 상품 목록(최신순). */
     fun getRecentViewedProducts(): Flow<List<Product>>
+
+    /**
+     * 최근 본 상품 기반 개인화 추천(최신순).
+     * 최근 본 상품들의 카테고리를 모아 같은 카테고리의 다른 상품을 반환하며,
+     * 이미 본 상품과 장바구니에 담긴 상품은 제외한다. 최근 본 게 없으면 빈 목록.
+     */
+    fun getRecommendations(): Flow<List<Product>>
 }
 
 @Singleton
@@ -46,6 +55,7 @@ class ProductRepositoryImpl @Inject constructor(
     private val json: Json,
     private val dispatchers: DispatcherProvider,
     private val recentProductDao: RecentProductDao,
+    private val cartDao: CartDao,
 ) : ProductRepository {
 
     // assets는 변하지 않으므로 한 번 파싱한 뒤 메모리에 캐시한다.
@@ -106,6 +116,8 @@ class ProductRepositoryImpl @Inject constructor(
         recentProductDao.upsert(
             RecentProductEntity(productId = productId, viewedAt = System.currentTimeMillis()),
         )
+        // 최신 20개만 유지(초과분 삭제).
+        recentProductDao.trimToLimit(RECENT_LIMIT)
     }
 
     override fun getRecentViewedProducts(): Flow<List<Product>> =
@@ -113,9 +125,34 @@ class ProductRepositoryImpl @Inject constructor(
             .map { entities -> entities.mapNotNull { getProductById(it.productId) } }
             .flowOn(dispatchers.io)
 
+    override fun getRecommendations(): Flow<List<Product>> =
+        combine(
+            recentProductDao.observeRecent(RECENT_LIMIT),
+            cartDao.observeProductIds(),
+        ) { recentEntities, cartIds ->
+            if (recentEntities.isEmpty()) return@combine emptyList()
+
+            val allProducts = loadProducts()
+            val productMap = allProducts.associateBy { it.id }
+            // 최근 본 상품(최신순). 카탈로그에서 사라진 id는 건너뛴다.
+            val recentProducts = recentEntities.mapNotNull { productMap[it.productId] }
+            if (recentProducts.isEmpty()) return@combine emptyList()
+
+            // 이미 본 상품 + 장바구니 상품은 추천에서 제외.
+            val excludeIds = recentProducts.mapTo(mutableSetOf()) { it.id }.apply { addAll(cartIds) }
+            // 최근 본 순서대로 카테고리 우선순위를 두고 같은 카테고리의 다른 상품을 모은다.
+            recentProducts.map { it.category.id }.distinct()
+                .flatMap { categoryId ->
+                    allProducts.filter { it.category.id == categoryId && it.id !in excludeIds }
+                }
+                .distinctBy { it.id }
+                .take(RECOMMENDATION_LIMIT)
+        }.flowOn(dispatchers.io)
+
     private companion object {
         const val FILE_PRODUCTS = "products.json"
         const val FILE_CATEGORIES = "categories.json"
         const val RECENT_LIMIT = 20
+        const val RECOMMENDATION_LIMIT = 10
     }
 }

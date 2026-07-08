@@ -7,6 +7,7 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import kr.hnu.ice.finalproject.core.model.FontSizeOption
 import kr.hnu.ice.finalproject.core.model.User
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -17,11 +18,15 @@ import javax.inject.Singleton
  * @param isLoggedIn 로그인 여부
  * @param user 로그인한 사용자 (비로그인 시 null)
  * @param darkTheme 다크모드 설정
+ * @param fontSize 접근성 글자 크기 설정
+ * @param highContrast 고대비(명암 대비 강화) 설정
  */
 data class UserData(
     val isLoggedIn: Boolean,
     val user: User?,
     val darkTheme: Boolean,
+    val fontSize: FontSizeOption,
+    val highContrast: Boolean,
 )
 
 /**
@@ -39,6 +44,12 @@ interface UserPreferencesRepository {
 
     /** 다크모드 설정 변경. */
     suspend fun setDarkTheme(enabled: Boolean)
+
+    /** 글자 크기 설정 변경. */
+    suspend fun setFontSize(option: FontSizeOption)
+
+    /** 고대비 설정 변경. */
+    suspend fun setHighContrast(enabled: Boolean)
 }
 
 @Singleton
@@ -52,6 +63,8 @@ class UserPreferencesRepositoryImpl @Inject constructor(
         val USER_NAME = stringPreferencesKey("user_name")
         val USER_EMAIL = stringPreferencesKey("user_email")
         val DARK_THEME = booleanPreferencesKey("dark_theme")
+        val FONT_SIZE = stringPreferencesKey("font_size")
+        val HIGH_CONTRAST = booleanPreferencesKey("high_contrast")
     }
 
     override val userData: Flow<UserData> = dataStore.data.map { prefs ->
@@ -66,10 +79,15 @@ class UserPreferencesRepositoryImpl @Inject constructor(
         } else {
             null
         }
+        val fontSize = prefs[Keys.FONT_SIZE]
+            ?.let { name -> runCatching { FontSizeOption.valueOf(name) }.getOrNull() }
+            ?: FontSizeOption.NORMAL
         UserData(
             isLoggedIn = loggedIn,
             user = user,
             darkTheme = prefs[Keys.DARK_THEME] ?: false,
+            fontSize = fontSize,
+            highContrast = prefs[Keys.HIGH_CONTRAST] ?: false,
         )
     }
 
@@ -94,6 +112,18 @@ class UserPreferencesRepositoryImpl @Inject constructor(
     override suspend fun setDarkTheme(enabled: Boolean) {
         dataStore.edit { prefs ->
             prefs[Keys.DARK_THEME] = enabled
+        }
+    }
+
+    override suspend fun setFontSize(option: FontSizeOption) {
+        dataStore.edit { prefs ->
+            prefs[Keys.FONT_SIZE] = option.name
+        }
+    }
+
+    override suspend fun setHighContrast(enabled: Boolean) {
+        dataStore.edit { prefs ->
+            prefs[Keys.HIGH_CONTRAST] = enabled
         }
     }
 }

@@ -107,7 +107,7 @@ fun OrderScreen(
             // 금액
             SectionTitle("결제 금액")
             AmountLine("상품 금액", PriceFormatter.format(state.subtotal))
-            AmountLine("할인", "-${PriceFormatter.format(state.discount)}")
+            AmountLine("쿠폰 할인", "-${PriceFormatter.format(state.discount)}")
             AmountLine("배송비", if (state.shippingFee == 0) "무료" else PriceFormatter.format(state.shippingFee))
         }
 

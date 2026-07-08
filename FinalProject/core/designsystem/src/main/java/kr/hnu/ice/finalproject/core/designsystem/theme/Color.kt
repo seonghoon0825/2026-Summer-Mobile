@@ -22,3 +22,7 @@ val PointRed = Color(0xFFFF3D3D)
 val DarkBackground = Color(0xFF121212)
 val DarkSurface = Color(0xFF1E1E1E)
 val DarkGray = Color(0xFF2C2C2C)
+
+// 고대비(접근성): 순수 흑/백 + 진한 경계선으로 명암 대비를 극대화한다.
+val TrueBlack = Color(0xFF000000)
+val HighContrastDarkSurface = Color(0xFF1A1A1A)

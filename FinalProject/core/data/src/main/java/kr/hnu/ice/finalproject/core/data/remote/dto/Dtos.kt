@@ -20,6 +20,8 @@ data class ProductDto(
     val reviewCount: Int,
     val description: String,
     val options: List<ProductOptionDto>,
+    // 세일 중이면 세일가(원). 없으면 정상가. (Mock 데이터에 세일 상태를 넣기 위한 필드)
+    val salePrice: Int? = null,
 )
 
 @Serializable
